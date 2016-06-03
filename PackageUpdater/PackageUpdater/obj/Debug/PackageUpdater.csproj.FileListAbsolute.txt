@@ -1,0 +1,9 @@
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\bin\Debug\PackageUpdater.exe.config
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\bin\Debug\PackageUpdater.exe
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\bin\Debug\PackageUpdater.pdb
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.csprojResolveAssemblyReference.cache
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.Form1.resources
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.Properties.Resources.resources
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.csproj.GenerateResource.Cache
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.exe
+c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.pdb
