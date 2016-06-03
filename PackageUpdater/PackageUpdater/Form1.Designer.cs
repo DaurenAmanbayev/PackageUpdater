@@ -35,7 +35,11 @@
             this.saveToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oPtionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearWorkAreaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filtersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeByExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeByCreatedDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,13 +48,13 @@
             this.toolStripButtonRemoveByExt = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.removeByExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeByCreatedDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oPtionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearWorkAreaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelDirectoryInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.listViewDirectoryDetails = new System.Windows.Forms.ListView();
+            this.columnHeaderFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderFilePath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderCreatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderExtension = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -105,6 +109,21 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
+            // oPtionsToolStripMenuItem
+            // 
+            this.oPtionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearWorkAreaToolStripMenuItem});
+            this.oPtionsToolStripMenuItem.Name = "oPtionsToolStripMenuItem";
+            this.oPtionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.oPtionsToolStripMenuItem.Text = "Options";
+            // 
+            // clearWorkAreaToolStripMenuItem
+            // 
+            this.clearWorkAreaToolStripMenuItem.Name = "clearWorkAreaToolStripMenuItem";
+            this.clearWorkAreaToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.clearWorkAreaToolStripMenuItem.Text = "Clear Work Area";
+            this.clearWorkAreaToolStripMenuItem.Click += new System.EventHandler(this.clearWorkAreaToolStripMenuItem_Click);
+            // 
             // filtersToolStripMenuItem
             // 
             this.filtersToolStripMenuItem.CheckOnClick = true;
@@ -114,6 +133,20 @@
             this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
             this.filtersToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.filtersToolStripMenuItem.Text = "Filters";
+            // 
+            // removeByExtensionToolStripMenuItem
+            // 
+            this.removeByExtensionToolStripMenuItem.Checked = true;
+            this.removeByExtensionToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.removeByExtensionToolStripMenuItem.Name = "removeByExtensionToolStripMenuItem";
+            this.removeByExtensionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.removeByExtensionToolStripMenuItem.Text = "Remove By Extension";
+            // 
+            // removeByCreatedDateToolStripMenuItem
+            // 
+            this.removeByCreatedDateToolStripMenuItem.Name = "removeByCreatedDateToolStripMenuItem";
+            this.removeByCreatedDateToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.removeByCreatedDateToolStripMenuItem.Text = "Remove By Created Date";
             // 
             // helpToolStripMenuItem
             // 
@@ -127,13 +160,13 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.helpToolStripMenuItem1.Text = "Help";
             // 
             // toolStrip1
@@ -180,34 +213,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 2;
             // 
-            // removeByExtensionToolStripMenuItem
-            // 
-            this.removeByExtensionToolStripMenuItem.Checked = true;
-            this.removeByExtensionToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.removeByExtensionToolStripMenuItem.Name = "removeByExtensionToolStripMenuItem";
-            this.removeByExtensionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.removeByExtensionToolStripMenuItem.Text = "Remove By Extension";
-            // 
-            // removeByCreatedDateToolStripMenuItem
-            // 
-            this.removeByCreatedDateToolStripMenuItem.Name = "removeByCreatedDateToolStripMenuItem";
-            this.removeByCreatedDateToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.removeByCreatedDateToolStripMenuItem.Text = "Remove By Created Date";
-            // 
-            // oPtionsToolStripMenuItem
-            // 
-            this.oPtionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearWorkAreaToolStripMenuItem});
-            this.oPtionsToolStripMenuItem.Name = "oPtionsToolStripMenuItem";
-            this.oPtionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.oPtionsToolStripMenuItem.Text = "Options";
-            // 
-            // clearWorkAreaToolStripMenuItem
-            // 
-            this.clearWorkAreaToolStripMenuItem.Name = "clearWorkAreaToolStripMenuItem";
-            this.clearWorkAreaToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.clearWorkAreaToolStripMenuItem.Text = "Clear Work Area";
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -226,6 +231,11 @@
             // 
             // listViewDirectoryDetails
             // 
+            this.listViewDirectoryDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderFileName,
+            this.columnHeaderFilePath,
+            this.columnHeaderCreatedDate,
+            this.columnHeaderExtension});
             this.listViewDirectoryDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewDirectoryDetails.Location = new System.Drawing.Point(0, 49);
             this.listViewDirectoryDetails.Name = "listViewDirectoryDetails";
@@ -233,6 +243,24 @@
             this.listViewDirectoryDetails.TabIndex = 4;
             this.listViewDirectoryDetails.UseCompatibleStateImageBehavior = false;
             this.listViewDirectoryDetails.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderFileName
+            // 
+            this.columnHeaderFileName.Text = "File Name";
+            this.columnHeaderFileName.Width = 100;
+            // 
+            // columnHeaderFilePath
+            // 
+            this.columnHeaderFilePath.Width = 100;
+            // 
+            // columnHeaderCreatedDate
+            // 
+            this.columnHeaderCreatedDate.Text = "Created Date";
+            this.columnHeaderCreatedDate.Width = 120;
+            // 
+            // columnHeaderExtension
+            // 
+            this.columnHeaderExtension.Text = "Extension";
             // 
             // Form1
             // 
@@ -282,6 +310,10 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelDirectoryInfo;
         private System.Windows.Forms.ListView listViewDirectoryDetails;
+        private System.Windows.Forms.ColumnHeader columnHeaderFileName;
+        private System.Windows.Forms.ColumnHeader columnHeaderFilePath;
+        private System.Windows.Forms.ColumnHeader columnHeaderCreatedDate;
+        private System.Windows.Forms.ColumnHeader columnHeaderExtension;
     }
 }
 

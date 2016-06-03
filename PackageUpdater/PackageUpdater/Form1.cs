@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +24,8 @@ namespace PackageUpdater
      */
     public partial class Form1 : Form
     {
+        List<string> extensionsList = new List<string>();      
+        static string directoryPath = "";
         //создать структуру для выбора и фильтрации требуемых файлов
         //создать структуру файлов для удаления данных
         public Form1()
@@ -38,9 +41,12 @@ namespace PackageUpdater
 
             if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
             {
-                string[] files = Directory.GetFiles(fbd.SelectedPath);
+                //string[] files = Directory.GetFiles(fbd.SelectedPath);
+                DiscoveryFolder(fbd.SelectedPath);
 
-               // System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+                //string desc = string.Concat(files);
+             
+               //System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString()+ desc, "Message");
 
             }
         }
@@ -48,9 +54,49 @@ namespace PackageUpdater
         //обработка выбранной директории, и агрегации таблицы
         private void DiscoveryFolder(string directoryPath)
         {
- 
-        }
+            string[] files = Directory.GetFiles(directoryPath);      
+            foreach (var file in files)
+            {                
+                FileInfo info = new FileInfo(file);
+                var item = new ListViewItem(new[] {
+                        info.Name,
+                        info.FullName,
+                        info.CreationTimeUtc.ToString(),
+                        info.Extension});
+                listViewDirectoryDetails.Items.Add(item);
 
+                AddAvailableExtension(info.Extension);
+            }
+
+            toolStripStatusLabelDirectoryInfo.Text = string.Format("Info: path: {0}; files count: {1}", directoryPath, files.Length);
+
+        }
+        private void AddAvailableExtension(string extension)
+        {
+            if (!extensionsList.Contains(extension))
+            {
+                extensionsList.Add(extension);              
+                toolStripDropDownButtonExtensions.DropDownItems.Add(new ToolStripDropDownButton { Text = extension,ToolTipText=extension });
+            }
+        }
+        private void UpdateAvailableExtension()
+        {
+            
+            
+        }
+        private void DirectoryData()
+        {
+            listViewDirectoryDetails.Items.Clear();
+            //foreach (Favorite fav in queryCategory.Favorites)
+            //{
+            //    var item = new ListViewItem(new[] { fav.Hostname,
+            //            fav.Address,
+            //            fav.Port.ToString(),
+            //            fav.Protocol.Name,
+            //            fav.Location.LocationName });
+            //    listViewDetails.Items.Add(item);
+            //}
+        }
         private void saveToFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
@@ -64,7 +110,7 @@ namespace PackageUpdater
         //https://msdn.microsoft.com/en-us/library/ms404280%28v=vs.110%29.aspx
         //http://stackoverflow.com/questions/17232414/creating-a-zip-archive-in-memory-using-system-io-compression
 
-        static string directoryPath = "";
+        
         //архивация данных
         private void Compress(DirectoryInfo directorySelected)
         {
@@ -96,6 +142,11 @@ namespace PackageUpdater
         private void Remove(DirectoryInfo directorySelected)
         {
  
+        }
+
+        private void clearWorkAreaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //предупреждение
         }
 
 
