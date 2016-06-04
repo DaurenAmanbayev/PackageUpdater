@@ -44,10 +44,10 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButtonExtensions = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripButtonRemoveByExt = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRemoveByExtension = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.toolStripButtonRemoveByDate = new System.Windows.Forms.ToolStripButton();
+            this.dateTimePickerCreated = new System.Windows.Forms.DateTimePicker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelDirectoryInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.listViewDirectoryDetails = new System.Windows.Forms.ListView();
@@ -87,26 +87,26 @@
             // openFolderToolStripMenuItem
             // 
             this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.openFolderToolStripMenuItem.Text = "Open Folder";
             this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
             // 
             // saveToFolderToolStripMenuItem
             // 
             this.saveToFolderToolStripMenuItem.Name = "saveToFolderToolStripMenuItem";
-            this.saveToFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToFolderToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.saveToFolderToolStripMenuItem.Text = "Save As...";
             this.saveToFolderToolStripMenuItem.Click += new System.EventHandler(this.saveToFolderToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(136, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // oPtionsToolStripMenuItem
@@ -126,7 +126,6 @@
             // 
             // filtersToolStripMenuItem
             // 
-            this.filtersToolStripMenuItem.CheckOnClick = true;
             this.filtersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.removeByExtensionToolStripMenuItem,
             this.removeByCreatedDateToolStripMenuItem});
@@ -144,6 +143,8 @@
             // 
             // removeByCreatedDateToolStripMenuItem
             // 
+            this.removeByCreatedDateToolStripMenuItem.Checked = true;
+            this.removeByCreatedDateToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.removeByCreatedDateToolStripMenuItem.Name = "removeByCreatedDateToolStripMenuItem";
             this.removeByCreatedDateToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.removeByCreatedDateToolStripMenuItem.Text = "Remove By Created Date";
@@ -172,46 +173,47 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButtonExtensions,
-            this.toolStripButtonRemoveByExt,
-            this.toolStripSeparator1});
+            this.toolStripButtonRemoveByExtension,
+            this.toolStripSeparator1,
+            this.toolStripButtonRemoveByDate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(647, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripDropDownButtonExtensions
+            // toolStripButtonRemoveByExtension
             // 
-            this.toolStripDropDownButtonExtensions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButtonExtensions.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonExtensions.Image")));
-            this.toolStripDropDownButtonExtensions.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButtonExtensions.Name = "toolStripDropDownButtonExtensions";
-            this.toolStripDropDownButtonExtensions.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButtonExtensions.Text = "Available Extension";
-            // 
-            // toolStripButtonRemoveByExt
-            // 
-            this.toolStripButtonRemoveByExt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRemoveByExt.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRemoveByExt.Image")));
-            this.toolStripButtonRemoveByExt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRemoveByExt.Name = "toolStripButtonRemoveByExt";
-            this.toolStripButtonRemoveByExt.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonRemoveByExt.Text = "Remove By Extension";
-            this.toolStripButtonRemoveByExt.ToolTipText = "Remove By Extension";
-            this.toolStripButtonRemoveByExt.Click += new System.EventHandler(this.toolStripButtonRemoveByExt_Click);
+            this.toolStripButtonRemoveByExtension.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRemoveByExtension.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRemoveByExtension.Image")));
+            this.toolStripButtonRemoveByExtension.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRemoveByExtension.Name = "toolStripButtonRemoveByExtension";
+            this.toolStripButtonRemoveByExtension.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonRemoveByExtension.Text = "Remove By Extension";
+            this.toolStripButtonRemoveByExtension.Click += new System.EventHandler(this.toolStripButtonRemoveByExtension_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // dateTimePicker1
+            // toolStripButtonRemoveByDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(71, 27);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.toolStripButtonRemoveByDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRemoveByDate.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRemoveByDate.Image")));
+            this.toolStripButtonRemoveByDate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRemoveByDate.Name = "toolStripButtonRemoveByDate";
+            this.toolStripButtonRemoveByDate.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonRemoveByDate.Text = "Remove By Created Date";
+            this.toolStripButtonRemoveByDate.ToolTipText = "Remove By Created Date";
+            this.toolStripButtonRemoveByDate.Click += new System.EventHandler(this.toolStripButtonRemoveByDate_Click);
+            // 
+            // dateTimePickerCreated
+            // 
+            this.dateTimePickerCreated.Location = new System.Drawing.Point(63, 27);
+            this.dateTimePickerCreated.Name = "dateTimePickerCreated";
+            this.dateTimePickerCreated.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerCreated.TabIndex = 2;
             // 
             // statusStrip1
             // 
@@ -269,7 +271,7 @@
             this.ClientSize = new System.Drawing.Size(647, 484);
             this.Controls.Add(this.listViewDirectoryDetails);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerCreated);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -298,9 +300,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonExtensions;
-        private System.Windows.Forms.ToolStripButton toolStripButtonRemoveByExt;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRemoveByDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerCreated;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem filtersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeByExtensionToolStripMenuItem;
@@ -314,6 +315,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderFilePath;
         private System.Windows.Forms.ColumnHeader columnHeaderCreatedDate;
         private System.Windows.Forms.ColumnHeader columnHeaderExtension;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRemoveByExtension;
     }
 }
 

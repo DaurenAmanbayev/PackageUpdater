@@ -24,15 +24,16 @@ namespace PackageUpdater
      */
     public partial class Form1 : Form
     {
-        List<string> extensionsList = new List<string>();      
+        List<string> extensionsList = new List<string>();
         static string directoryPath = "";
+        bool workplaceIsClear = true;
         //создать структуру для выбора и фильтрации требуемых файлов
         //создать структуру файлов для удаления данных
         public Form1()
         {
             InitializeComponent();
         }
-
+        //выбрать папку исходных файлов
         private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -41,22 +42,24 @@ namespace PackageUpdater
 
             if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
             {
-                //string[] files = Directory.GetFiles(fbd.SelectedPath);
+                if (!workplaceIsClear)
+                {
+                    listViewDirectoryDetails.Items.Clear();
+                    extensionsList.Clear();
+                }
                 DiscoveryFolder(fbd.SelectedPath);
-
-                //string desc = string.Concat(files);
-             
-               //System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString()+ desc, "Message");
-
+                directoryPath = fbd.SelectedPath;
+                workplaceIsClear = false;
             }
         }
 
         //обработка выбранной директории, и агрегации таблицы
+        //можно расширить функционал для рекурсивного поиска вложенных файлов...
         private void DiscoveryFolder(string directoryPath)
         {
-            string[] files = Directory.GetFiles(directoryPath);      
+            string[] files = Directory.GetFiles(directoryPath);
             foreach (var file in files)
-            {                
+            {
                 FileInfo info = new FileInfo(file);
                 var item = new ListViewItem(new[] {
                         info.Name,
@@ -67,63 +70,47 @@ namespace PackageUpdater
 
                 AddAvailableExtension(info.Extension);
             }
-
+           // toolStripComboBoxExtensions.ComboBox.DataSource = extensionsList;
             toolStripStatusLabelDirectoryInfo.Text = string.Format("Info: path: {0}; files count: {1}", directoryPath, files.Length);
 
         }
+        //создания списка доступных расширений в папке
         private void AddAvailableExtension(string extension)
         {
             if (!extensionsList.Contains(extension))
             {
-                extensionsList.Add(extension);              
-                toolStripDropDownButtonExtensions.DropDownItems.Add(new ToolStripDropDownButton { Text = extension,ToolTipText=extension });
-            }
+                extensionsList.Add(extension);                
+                //toolStripDropDownButtonExtensions.DropDownItems.Add(new ToolStripDropDownButton { Text = extension,ToolTipText=extension });
+            }            
         }
-        private void UpdateAvailableExtension()
-        {
-            
-            
-        }
-        private void DirectoryData()
-        {
-            listViewDirectoryDetails.Items.Clear();
-            //foreach (Favorite fav in queryCategory.Favorites)
-            //{
-            //    var item = new ListViewItem(new[] { fav.Hostname,
-            //            fav.Address,
-            //            fav.Port.ToString(),
-            //            fav.Protocol.Name,
-            //            fav.Location.LocationName });
-            //    listViewDetails.Items.Add(item);
-            //}
-        }
+
+        //сохранить список файлов в архив
         private void saveToFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+            DialogResult result = fbd.ShowDialog();
+            if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            {
+                DirectoryInfo dir = new DirectoryInfo(directoryPath);
+                string zipPath=fbd.SelectedPath+"\\"+dir.Name+".zip";               
+                ZipFile.CreateFromDirectory(directoryPath, zipPath);                
+            }
         }
-        //удаление 
-        private void toolStripButtonRemoveByExt_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        //https://msdn.microsoft.com/en-us/library/ms404280%28v=vs.110%29.aspx
-        //http://stackoverflow.com/questions/17232414/creating-a-zip-archive-in-memory-using-system-io-compression
-
-        
-        //архивация данных
+        //архивация данных в формате .Gz
         private void Compress(DirectoryInfo directorySelected)
         {
             foreach (FileInfo fileToCompress in directorySelected.GetFiles())
             {
                 using (FileStream originalFileStream = fileToCompress.OpenRead())
                 {
-                    if ((File.GetAttributes(fileToCompress.FullName) & 
+                    if ((File.GetAttributes(fileToCompress.FullName) &
                        FileAttributes.Hidden) != FileAttributes.Hidden & fileToCompress.Extension != ".gz")
                     {
                         using (FileStream compressedFileStream = File.Create(fileToCompress.FullName + ".gz"))
                         {
-                            using (GZipStream compressionStream = new GZipStream(compressedFileStream, 
+                            using (GZipStream compressionStream = new GZipStream(compressedFileStream,
                                CompressionMode.Compress))
                             {
                                 originalFileStream.CopyTo(compressionStream);
@@ -131,24 +118,77 @@ namespace PackageUpdater
                             }
                         }
                         FileInfo info = new FileInfo(directoryPath + "\\" + fileToCompress.Name + ".gz");
-                        Console.WriteLine("Compressed {0} from {1} to {2} bytes.",
-                        fileToCompress.Name, fileToCompress.Length.ToString(), info.Length.ToString());
+                        MessageBox.Show(string.Format("Compressed {0} from {1} to {2} bytes.",
+                        fileToCompress.Name, fileToCompress.Length.ToString(), info.Length.ToString()),"Compress");
                     }
-
                 }
             }
         }
-
-        private void Remove(DirectoryInfo directorySelected)
+        //удалить файлы по расширению
+        private void RemoveByExtension(List<string> checkedList)
         {
- 
+            string[] files = Directory.GetFiles(directoryPath);
+            foreach (var file in files)
+            {
+                FileInfo info = new FileInfo(file);
+                //если расширение файла имеется в списке, удалить файл
+                if (checkedList.Contains(info.Extension.ToString()))
+                {
+                    File.Delete(info.FullName);
+                }
+            }
+            //очищаем рабочее место, заполняем обновленными данными
+            listViewDirectoryDetails.Items.Clear();
+            extensionsList.Clear();
+            DiscoveryFolder(directoryPath);
         }
-
+        //удалить файлы по дате создания
+        private void RemoveByDate(DateTime date)
+        {
+            string[] files = Directory.GetFiles(directoryPath);
+            foreach (var file in files)
+            {
+                FileInfo info = new FileInfo(file);
+                //если дата создания совпадает, с датой фильтрации, удалить файл
+                if (info.CreationTimeUtc.Date == date.Date)
+                {
+                    File.Delete(info.FullName);
+                }
+            }
+            //очищаем рабочее место, заполняем обновленными данными
+            listViewDirectoryDetails.Items.Clear();
+            extensionsList.Clear();
+            DiscoveryFolder(directoryPath);
+        }
+        //очистить рабочее место
         private void clearWorkAreaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //предупреждение
+            listViewDirectoryDetails.Items.Clear();
+            extensionsList.Clear();
+            workplaceIsClear = true;
+            //toolStripComboBoxExtensions.ComboBox.DataSource = extensionsList;
         }
+        //выбор списка расширений и их удаление
+        private void toolStripButtonRemoveByExtension_Click(object sender, EventArgs e)
+        {
+            //предупреждение
+            ExtensionsManager frm = new ExtensionsManager(extensionsList);
+            DialogResult result = frm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                RemoveByExtension(frm.GetCheckedList());
+            }
 
-
+        }      
+        //удаление по дате создания
+        private void toolStripButtonRemoveByDate_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Вы уверены, что собираетесь удалить файлы в данной папке по дате создания", "Фильтр по дате", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                RemoveByDate(dateTimePickerCreated.Value);
+            }
+        }
     }
 }
