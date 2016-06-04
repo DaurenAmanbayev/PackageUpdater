@@ -7,3 +7,13 @@ c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpda
 c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.csproj.GenerateResource.Cache
 c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.exe
 c:\users\ktoloc\documents\visual studio 2013\Projects\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.pdb
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\bin\Debug\PackageUpdater.exe.config
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.exe
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.pdb
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\bin\Debug\PackageUpdater.exe
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\bin\Debug\PackageUpdater.pdb
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.csprojResolveAssemblyReference.cache
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.Form1.resources
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.Properties.Resources.resources
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.csproj.GenerateResource.Cache
+C:\Users\Lighto\Documents\GitHub\PackageUpdater\PackageUpdater\PackageUpdater\obj\Debug\PackageUpdater.ExtensionsManager.resources
